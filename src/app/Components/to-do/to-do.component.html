@@ -26,12 +26,12 @@
           <tbody>
             @for(taskItem of tasks; track $index){
             <tr>
-              @if(!editMode){
+              @if(!editMode || editIndex !== $index){
               <td>{{taskItem}}</td>
-              <td><button class="btn btn-info" (click)="editTask($index, newTask)">Edit</button></td>
+              <td><button class="btn btn-info" (click)="editTask($index)">Edit</button></td>
               }
-              @if(editMode){
-              <td><input [(ngModel)]="editedTask"/></td>
+              @if(editMode && editIndex === $index){
+              <td style="width: 25%;"><input [(ngModel)]="editedTask" /></td>
               <td><button class="btn btn-success" (click)="saveTask($index)">Save</button></td>
               }
               <td><button class="btn btn-danger" (click)="removeTask($index)">Remove</button></td>

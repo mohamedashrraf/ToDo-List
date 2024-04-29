@@ -17,6 +17,8 @@ export class ToDoComponent {
   editedTask:string="";
   isAvaliable: boolean = false;
   editMode:boolean = false;
+  editIndex: number = -1;
+
 
   addTask(){
     if(this.newTask.trim() !==""){
@@ -35,18 +37,30 @@ export class ToDoComponent {
     // }
   }
 
-  editTask(index:number, newTaskEdit:string){
-    newTaskEdit=newTaskEdit.trim();
-    if(newTaskEdit!==""){
-      this.tasks[index] = newTaskEdit;
-    }
-    this.editMode=true;
+  editTask(index:number){
+    this.editIndex = index;
+    this.editedTask = this.tasks[index];
+    this.editMode = true;
 
+    // if(this.editedTask.trim() !== ""){
+    //   this.tasks[index] = this.editedTask;
+    // }
+    // else{
+    //   this.editedTask = this.tasks[index];
+    //   // this.newTask = this.editedTask;
+    // }
+    // this.newTask ="";
+    // this.editMode=true;
   }
 
   saveTask(index:number){
+    if (this.editedTask.trim() !== '') {
     this.tasks[index] = this.editedTask;
-    this.editMode=false;
+  }
+  this.editMode = false;
+  this.editIndex = -1;
+  // this.tasks[index] = this.editedTask;
+    // this.editMode=false;
   }
 
 
